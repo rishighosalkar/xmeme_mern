@@ -17,10 +17,11 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-//const uri = process.env.ATLAS_URI;
-const uri = "mongodb://localhost:27017/users";
-mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }
+const cloud_uri = process.env.ATLAS_URI;
+//const uri = "mongodb://localhost:27017/users";
+mongoose.connect(cloud_uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }
     );
+console.log('connected to cloud');
 
 const connection = mongoose.connection;
 connection.once('open', () => {
@@ -29,7 +30,6 @@ connection.once('open', () => {
 
 const usersRouter = require('./routes/memes');
 app.use('/memes', usersRouter);
-
  
 app.listen(port, () => 
     console.log('Server is running on port:', port)

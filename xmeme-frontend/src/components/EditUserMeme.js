@@ -82,7 +82,7 @@ export class EditUserMeme extends Component {
                     caption: this.state.caption,
                     url: this.state.url
                 }
-                //alert(this.state.url);
+                alert(this.state.url);
                 console.log(user);
                 axios.patch('http://localhost:8081/memes/update/' + this.props.match.params.id, user)
                       .then(res => console.log(res.data));
